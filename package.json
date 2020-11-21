@@ -15,5 +15,8 @@
     "url": "https://github.com/nycgio/ecommerce-reactjs/issues"
   },
   "homepage": "https://github.com/nycgio/ecommerce-reactjs#readme",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
