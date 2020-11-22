@@ -12,6 +12,9 @@ const User = require('./models/User')
 const Product = require('./models/Product')
 const Order = require('./models/Order')
 
+// load dotenv variables
+dotenv.config()
+
 // connect the db
 connectDB()
 
