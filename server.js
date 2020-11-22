@@ -13,6 +13,10 @@ const productRoute = require('./routes/productRoute')
 connectDB()
 
 const app = express()
+
+// allow json data in the body
+app.use(express.json())
+
 const PORT = process.env.PORT || 5000
 
 app.get('/', (req, res) => {
