@@ -8,7 +8,7 @@ import { productListReducer } from './reducers/productReducers'
 
 // combine all our reducers
 const reducer = combineReducers({
-  producetList: productListReducer,
+  productList: productListReducer,
 })
 
 // this is our initial state
