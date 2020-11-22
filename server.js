@@ -9,6 +9,7 @@ dotenv.config()
 
 // import the routes
 const productRoute = require('./routes/productRoute')
+const userRoute = require('./routes/userRoute')
 
 connectDB()
 
@@ -25,6 +26,7 @@ app.get('/', (req, res) => {
 
 // set routes
 app.use('/api/products', productRoute)
+app.use('/api/users', userRoute)
 
 // app middlewares
 app.use(notFound)
