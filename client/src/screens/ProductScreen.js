@@ -20,7 +20,7 @@ import Message from '../components/Message'
 
 const ProductScreen = ({ match, history }) => {
   // keep track of quantity
-  const [qty, setQty] = useState(0)
+  const [qty, setQty] = useState(1)
 
   const dispatch = useDispatch()
   const productDetails = useSelector((state) => state.productDetails)
@@ -35,9 +35,13 @@ const ProductScreen = ({ match, history }) => {
   }
   return (
     <>
-      <Link className='btn btn-dark my-3' to='/'>
+      <Button
+        className='btn btn-dark my-3'
+        type='button'
+        onClick={() => history.goBack()}
+      >
         Go Back
-      </Link>
+      </Button>
       {loading ? (
         <Loader />
       ) : error ? (

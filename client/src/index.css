@@ -1,5 +1,12 @@
+body {
+  background-color: #c7c7c7;
+}
 main {
   min-height: 80vh;
+}
+h1 {
+  font-size: 1.4rem;
+  padding: 0.1rem;
 }
 
 h3 {
