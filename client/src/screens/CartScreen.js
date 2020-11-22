@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Row, Col, ListGroup, Image, Form, Button, Card } from 'react-bootstrap'
 
-import { addToCart } from '../actions/cartActions'
+import { addToCart, removeFromCart } from '../actions/cartActions'
 import Message from '../components/Message'
 
 const CartScreen = ({ match, location, history }) => {
@@ -24,11 +24,12 @@ const CartScreen = ({ match, location, history }) => {
   }, [dispatch, productId, qty])
 
   const removeFromCartHandler = (id) => {
-    console.log(id)
+    dispatch(removeFromCart(id))
   }
 
   const checkOutHandler = () => {
-    console.log('checkout')
+    // if they are logged in it will redirect to shipping
+    history.push('/login?redirect=shipping')
   }
   return (
     <Row>
@@ -103,7 +104,9 @@ const CartScreen = ({ match, location, history }) => {
                 disabled={cartItems.length === 0}
                 onClick={checkOutHandler}
               >
-                Proceed to Checkout
+                {cartItems.length === 0
+                  ? 'Cart is Empty'
+                  : 'Proceed to Checkout'}
               </Button>
             </ListGroup.Item>
           </ListGroup>
