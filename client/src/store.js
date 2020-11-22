@@ -6,7 +6,7 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 // combine all our reducers
 const reducer = combineReducers({})
 
-// initial our initial state
+// this is our initial state
 const initialState = {}
 
 const middleware = [thunk]
@@ -15,7 +15,7 @@ const middleware = [thunk]
 const store = createStore(
   reducer,
   initialState,
-  composeWithDevTools([...middleware])
+  composeWithDevTools(applyMiddleware(...middleware))
 )
 
 export default store
