@@ -4,11 +4,15 @@ import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
 
 // import reducers
-import { productListReducer } from './reducers/productReducers'
+import {
+  productDetailsReducer,
+  productListReducer,
+} from './reducers/productReducers'
 
 // combine all our reducers
 const reducer = combineReducers({
   productList: productListReducer,
+  productDetails: productDetailsReducer,
 })
 
 // this is our initial state
