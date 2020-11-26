@@ -1,6 +1,7 @@
 const express = require('express')
 const dotenv = require('dotenv')
 const colors = require('colors')
+const cors = require('cors')
 
 // import middleware
 const { notFound, errorHandler } = require('./middleware/errorMiddleware')
@@ -14,6 +15,26 @@ const userRoute = require('./routes/userRoute')
 connectDB()
 
 const app = express()
+
+let whitelist = [
+  'http://www.nycgio.com',
+  'http://nycgio.com',
+  'nycgio.com',
+  'http://localhost:3000',
+]
+
+let corsOptions = {
+  optionsSuccessStatus: 200,
+  origin: function (origin, cb) {
+    if (whitelist.indexOf(origin) !== -1) {
+      cb(null, true)
+    } else {
+      cb(new Error('Not allowed by cors'))
+    }
+  },
+}
+
+app.use(cors(corsOptions))
 
 // allow json data in the body
 app.use(express.json())
