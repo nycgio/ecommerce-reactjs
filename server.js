@@ -34,7 +34,7 @@ let corsOptions = {
   },
 }
 
-app.use(cors(corsOptions))
+app.use(cors())
 
 // allow json data in the body
 app.use(express.json())
