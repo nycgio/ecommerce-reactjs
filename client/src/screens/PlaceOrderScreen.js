@@ -1,12 +1,16 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Col, Row, Button, ListGroup, Image, Card } from 'react-bootstrap'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import Message from '../components/Message'
 import { CheckoutSteps } from '../components/CheckoutSteps'
 
-const PlaceOrderScreen = () => {
+import { createOrder } from '../actions/orderActions'
+import { clearCart } from '../actions/cartActions'
+
+const PlaceOrderScreen = ({ history }) => {
   const cart = useSelector((state) => state.cart)
+  const dispatch = useDispatch()
 
   // this functions adds decimals to a number
   const addDecimals = (num) => {
@@ -25,7 +29,30 @@ const PlaceOrderScreen = () => {
     Number(cart.taxPrice)
   ).toFixed(2)
 
-  const placeOrderHandler = () => {}
+  const orderCreate = useSelector((state) => state.orderCreate)
+  const { order, success, error } = orderCreate
+
+  const placeOrderHandler = () => {
+    dispatch(
+      createOrder({
+        orderItems: cart.cartItems,
+        shippingAddress: cart.shippingAddress,
+        paymentMethod: cart.paymentMethod,
+        itemsPrice: cart.itemsPrice,
+        shippingPrice: cart.shippingPrice,
+        taxPrice: cart.taxPrice,
+        totalPrice: cart.totalPrice,
+      })
+    )
+    dispatch(clearCart())
+  }
+
+  useEffect(() => {
+    if (success) {
+      history.push(`/order/${order._id}`)
+    }
+  }, [history, success, order])
+
   return (
     <>
       <CheckoutSteps step1 step2 step3 step4 />
@@ -111,6 +138,13 @@ const PlaceOrderScreen = () => {
                   <Col>${cart.totalPrice}</Col>
                 </Row>
               </ListGroup.Item>
+
+              {error && (
+                <ListGroup.Item>
+                  <Message variant='danger'>{error}</Message>
+                </ListGroup.Item>
+              )}
+
               <ListGroup.Item>
                 <Button
                   type='button'
