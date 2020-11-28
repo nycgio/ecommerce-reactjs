@@ -21,7 +21,7 @@ const limit = limiter({
     let customMessage = `Too many requests from ${ip} please try again in ${time} ${
       time > 1 ? 'minutes' : 'minute'
     }`
-    res.send(customMessage)
+    res.status(429).send(customMessage)
   },
 })
 

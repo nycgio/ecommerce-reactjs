@@ -11,6 +11,7 @@ dotenv.config()
 // import the routes
 const productRoute = require('./routes/productRoute')
 const userRoute = require('./routes/userRoute')
+const orderRoutes = require('./routes/orderRoute')
 
 connectDB()
 
@@ -34,7 +35,7 @@ let corsOptions = {
   },
 }
 
-app.use(cors())
+app.use(cors(corsOptions))
 
 // allow json data in the body
 app.use(express.json())
@@ -48,6 +49,7 @@ app.get('/', (req, res) => {
 // set routes
 app.use('/api/products', productRoute)
 app.use('/api/users', userRoute)
+app.use('/api/orders', orderRoutes)
 
 // app middlewares
 app.use(notFound)
