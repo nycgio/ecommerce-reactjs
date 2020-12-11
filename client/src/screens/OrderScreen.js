@@ -10,7 +10,10 @@ import Axios from 'axios'
 
 import { getOrderDetails, payOrder } from '../actions/orderActions'
 
-import { ORDER_PAY_RESET } from '../constants/orderConstants'
+import {
+  ORDER_DETAILS_RESET,
+  ORDER_DETAILS_SUCCESS,
+} from '../constants/orderConstants'
 
 const OrderScreen = ({ match }) => {
   const orderId = match.params.id

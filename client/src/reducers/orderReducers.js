@@ -4,6 +4,7 @@ import {
   ORDER_CREATE_SUCCESS,
   ORDER_DETAILS_FAIL,
   ORDER_DETAILS_REQUEST,
+  ORDER_DETAILS_RESET,
   ORDER_DETAILS_SUCCESS,
   ORDER_LIST_MY_FAIL,
   ORDER_LIST_MY_REQUEST,
@@ -63,6 +64,11 @@ export const orderDetailsReducer = (
         error: action.payload,
       }
 
+    case ORDER_DETAILS_RESET:
+      return {
+        loading: true,
+        order: undefined,
+      }
     default:
       return state
   }
