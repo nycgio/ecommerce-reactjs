@@ -15,6 +15,7 @@ import {
   userRegisterReducer,
   userUpdateProfileReducer,
   userListReducer,
+  userDeleteReducer,
 } from './reducers/userReducers'
 import {
   orderCreateReducer,
@@ -37,6 +38,7 @@ const reducer = combineReducers({
   orderDetails: orderDetailsReducer,
   orderPay: orderPayReducer,
   myOrders: myOrdersReducer,
+  userDelete: userDeleteReducer,
 })
 
 // get local storage
